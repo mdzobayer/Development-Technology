@@ -109,16 +109,16 @@ func main() {
 	// 		bson.D{{"age", 20}}}}}
 
 	// Filter with less than (<) operator
-	filter = bson.D{
-		{"age", bson.D{{"$lt", 20}}}}
+	// filter = bson.D{
+	// 	{"age", bson.D{{"$lt", 20}}}}
 
 	// Filter with less than equal (<=) operator
 	// filter = bson.D{
 	// 	{"age", bson.D{{"$lte", 15}}}}
 
 	// FIlter with grater than (>) operator
-	// filter = bson.D{
-	// 	{"age", bson.D{{"$gt", 10}}}}
+	filter = bson.D{
+		{"age", bson.D{{"$gt", 10}}}}
 
 	// Filter with grater than equal(>=) operator
 	// filter = bson.D{
