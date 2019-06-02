@@ -103,10 +103,10 @@ func main() {
 	// 		bson.D{{"age", 20}}}}}
 
 	// Filter with logical or (||) operation
-	// filter = bson.D{
-	// 	{"$or", []interface{}{
-	// 		bson.D{{"name", "Ash"}},
-	// 		bson.D{{"age", 20}}}}}
+	filter = bson.D{
+		{"$or", []interface{}{
+			bson.D{{"name", "Ash"}},
+			bson.D{{"age", 20}}}}}
 
 	// Filter with less than (<) operator
 	// filter = bson.D{
@@ -121,8 +121,8 @@ func main() {
 	// 	{"age", bson.D{{"$gt", 10}}}}
 
 	// Filter with grater than equal(>=) operator
-	filter = bson.D{
-		{"age", bson.D{{"$gte", 15}}}}
+	// filter = bson.D{
+	// 	{"age", bson.D{{"$gte", 15}}}}
 
 	var results []*Trainer
 
