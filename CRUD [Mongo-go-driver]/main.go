@@ -117,12 +117,12 @@ func main() {
 	// 	{"age", bson.D{{"$lte", 15}}}}
 
 	// FIlter with grater than (>) operator
-	filter = bson.D{
-		{"age", bson.D{{"$gt", 10}}}}
+	// filter = bson.D{
+	// 	{"age", bson.D{{"$gt", 10}}}}
 
 	// Filter with grater than equal(>=) operator
-	// filter = bson.D{
-	// 	{"age", bson.D{{"$gte", 15}}}}
+	filter = bson.D{
+		{"age", bson.D{{"$gte", 15}}}}
 
 	var results []*Trainer
 
