@@ -97,16 +97,16 @@ func main() {
 	findOptions.SetLimit(0)
 
 	// Filter with logical and (&&) operation
-	// filter = bson.D{
-	// 	{"$and", []interface{}{
-	// 		bson.D{{"name", "Ash"}},
-	// 		bson.D{{"age", 20}}}}}
-
-	// Filter with logical or (||) operation
 	filter = bson.D{
-		{"$or", []interface{}{
+		{"$and", []interface{}{
 			bson.D{{"name", "Ash"}},
 			bson.D{{"age", 20}}}}}
+
+	// Filter with logical or (||) operation
+	// filter = bson.D{
+	// 	{"$or", []interface{}{
+	// 		bson.D{{"name", "Ash"}},
+	// 		bson.D{{"age", 20}}}}}
 
 	// Filter with less than (<) operator
 	// filter = bson.D{
