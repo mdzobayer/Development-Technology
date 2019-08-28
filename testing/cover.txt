@@ -1,0 +1,5 @@
+mode: set
+Development-Technology/testing/hello.go:5.32,7.20 1 1
+Development-Technology/testing/hello.go:7.20,9.3 1 1
+Development-Technology/testing/hello.go:9.8,11.3 1 1
+Development-Technology/testing/main.go:5.13,13.2 4 0
