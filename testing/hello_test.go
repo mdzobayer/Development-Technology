@@ -1,9 +1,12 @@
 // https://medium.com/rungo/unit-testing-made-easy-in-go-25077669318
+// Command: go test -v
 package main
 
 import "testing"
 
-func TestHello(t *testing.T) {
+// test hello function with empty argument
+func TestHelloEmptyArg(t *testing.T) {
+
 	emptyResult := hello("") // should return "Hello Dude!"
 
 	if emptyResult != "Hello Dude!" {
@@ -11,7 +14,13 @@ func TestHello(t *testing.T) {
 	} else {
 		t.Logf("hello(\"\") success, expected %v, got %v", "Hello Dude!", emptyResult)
 	}
+}
 
+// test hello function with valid argument
+
+func TestHelloValidArg(t *testing.T) {
+
+	// test for valid  argument
 	result := hello("John") // should return "Hello John!"
 
 	if result != "Hello John!" {
