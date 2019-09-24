@@ -6,9 +6,15 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var db *sql.DB
+type Datastore interface {
+	AllBooks() ([]*Book, error)
+}
 
-func NewDB(dataSourceName string) (*sql.DB, error) {
+type DB struct {
+	*sql.DB
+}
+
+func NewDB(dataSourceName string) (*DB, error) {
 
 	db, err := sql.Open("mysql", dataSourceName)
 
@@ -19,5 +25,5 @@ func NewDB(dataSourceName string) (*sql.DB, error) {
 	if err = db.Ping(); err != nil {
 		return nil, err
 	}
-	return db, nil
+	return &DB{db}, nil
 }
