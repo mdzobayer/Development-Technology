@@ -1,18 +1,30 @@
 package main
 
 import (
-	"bookstore/models"
+	"Development-Technology/bookstore/models"
+	"database/sql"
 	"fmt"
+	"log"
 	"net/http"
 	//_ "github.com/go-sql-driver/mysql"
 	//_ "github.com/lib/pq"
 )
 
+type Env struct {
+	db *sql.DB
+}
+
 func main() {
-	models.InitDB("root:@tcp(localhost:3306)/bookstore")
+	db, err := models.NewDB("root:@tcp(localhost:3306)/bookstore")
 	//fmt.Println("After Connection Create")
 
-	http.HandleFunc("/books", booksIndex)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	env := &Env{db: db}
+
+	http.Handle("/books", booksIndex(env))
 	http.ListenAndServe(":3000", nil)
 
 	// if err != nil {
@@ -46,19 +58,23 @@ func main() {
 
 }
 
-func booksIndex(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
-		http.Error(w, http.StatusText(405), 405)
-		return
-	}
-	bks, err := models.AllBooks()
+func booksIndex(env *Env) http.Handler {
 
-	if err != nil {
-		http.Error(w, http.StatusText(500), 500)
-		return
-	}
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "GET" {
+			http.Error(w, http.StatusText(405), 405)
+			return
+		}
+		bks, err := models.AllBooks(env.db)
 
-	for _, bk := range bks {
-		fmt.Fprintf(w, "%s, %s, %s, $%.2f\n", bk.Isbn, bk.Title, bk.Author, bk.Price)
-	}
+		if err != nil {
+			http.Error(w, http.StatusText(500), 500)
+			return
+		}
+
+		for _, bk := range bks {
+			fmt.Fprintf(w, "%s, %s, %s, $%.2f\n", bk.Isbn, bk.Title, bk.Author, bk.Price)
+		}
+
+	})
 }
