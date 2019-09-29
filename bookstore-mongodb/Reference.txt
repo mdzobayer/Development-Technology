@@ -1,0 +1,5 @@
+
+
+1. Go Unit Testing with MySql: https://www.alexedwards.net/blog/organising-database-access
+2. CRUD Operation with SQL: https://www.alexedwards.net/blog/practical-persistence-sql
+3.   
