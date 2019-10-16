@@ -1,5 +1,7 @@
 // https://medium.com/rungo/unit-testing-made-easy-in-go-25077669318
 // Command: go test -v
+// Command converfile: go test -coverprofile=cover.txt
+// Command html: go tool cover -html=cover.txt -o cover.html
 package main
 
 import "testing"
